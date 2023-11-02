@@ -2,6 +2,12 @@
 
 branch to test CredentialHelperSelector, which appears when pushing to GitHub since the installation of Ruby On Rails (railsinstaller-4.0.1.exe)
 
+https://stackoverflow.com/questions/33503080/learning-git-tracking-vs-setting-upstream-u-for-remotes/33503255#33503255
+> `git push origin master` explicitly says "push the local branch 'master' to the remote named 'origin'". This does not define a persistent relationship, it just executes a push this one time. Note that the remote branch is assumed to be named "master".\
+> `git push -u origin master` is the same thing, except it first adds a persistent tracking relationship between your local branch "master" and the remote named "origin". As before, it is assumed the remote branch is named "master".\
+> If you have done a push with `-u` already, then the relationship is already defined. In the future, you can simply say `git push` or `git pull`, and git will automatically use the defined remote tracking branch without being told explicitly.\
+> You can view your tracking relationships with `git branch -vv`, which will list your local branches along with their current HEAD commit and, if one is set, the remote tracking branch.
+
 ```bash
 git checkout -b test-CredentialHelperSelector
 git push --set-upstream origin test-CredentialHelperSelector:test-CredentialHelperSelector-remote
@@ -12,11 +18,32 @@ git push -u origin test-CredentialHelperSelector:test-CredentialHelperSelector-r
 - pushes local tracking branch named `test-CredentialHelperSelector` from local repo to the origin
 - creates a remote tracking branch on local repo named `origin/test-CredentialHelperSelector-remote`
 
-https://stackoverflow.com/questions/33503080/learning-git-tracking-vs-setting-upstream-u-for-remotes/33503255#33503255
-> `git push origin master` explicitly says "push the local branch 'master' to the remote named 'origin'". This does not define a persistent relationship, it just executes a push this one time. Note that the remote branch is assumed to be named "master".\
-> `git push -u origin master` is the same thing, except it first adds a persistent tracking relationship between your local branch "master" and the remote named "origin". As before, it is assumed the remote branch is named "master".\
-> If you have done a push with `-u` already, then the relationship is already defined. In the future, you can simply say `git push` or `git pull`, and git will automatically use the defined remote tracking branch without being told explicitly.\
-> You can view your tracking relationships with `git branch -vv`, which will list your local branches along with their current HEAD commit and, if one is set, the remote tracking branch.
+After:
+```bash
+git push
+fatal: The upstream branch of your current branch does not match
+the name of your current branch.  To push to the upstream branch
+on the remote, use
+    git push origin HEAD:test-CredentialHelperSelector-remote
+To push to the branch of the same name on the remote, use
+    git push origin HEAD
+To choose either option permanently, see push.default in 'git help config'.
+To avoid automatically configuring an upstream branch when its name
+won't match the local branch, see option 'simple' of branch.autoSetupMerge
+in 'git help config'.
+```
+
+https://stackoverflow.com/questions/24864700/fatal-the-upstream-branch-of-your-current-branch-does-not-match-the-name-of-you/48298966#48298966
+> This happens if the name of the upstream branch and local branch do not match, which sometimes happens, and usually is unwanted:\
+> To solve this, run:
+> ```
+> git branch --unset-upstream
+> ```
+> Then, once you run git push again, you will be asked to use the --set-upstream option to set the upstream branch correctly.
+
+https://stackoverflow.com/questions/4878249/how-to-change-the-remote-a-branch-is-tracking/4879224#4879224
+> Using git v1.8.0 or later:
+> ```git branch branch_name --set-upstream-to your_new_remote/branch_name```
 
 # CredentialHelperSelector
 
