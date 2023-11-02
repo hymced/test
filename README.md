@@ -41,6 +41,20 @@ https://stackoverflow.com/questions/24864700/fatal-the-upstream-branch-of-your-c
 > ```
 > Then, once you run git push again, you will be asked to use the --set-upstream option to set the upstream branch correctly.
 
+```bash
+$ git branch -a
+  main
+* test-CredentialHelperSelector
+  remotes/origin/HEAD -> origin/main
+  remotes/origin/main
+  remotes/origin/test-CredentialHelperSelector
+  remotes/origin/test-CredentialHelperSelector-remote
+```
+
+https://stackoverflow.com/questions/3046436/how-do-you-stop-tracking-a-remote-branch-in-git/3046478#3046478
+> delete the local branch that is tracking the remote branch:
+> ```git branch -d -r origin/<remote branch name>```
+
 https://stackoverflow.com/questions/4878249/how-to-change-the-remote-a-branch-is-tracking/4879224#4879224
 > Using git v1.8.0 or later:
 > ```git branch branch_name --set-upstream-to your_new_remote/branch_name```
